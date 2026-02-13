@@ -32,6 +32,8 @@ export function renderNavbar(container) {
       ]),
       // Theme toggle
       createThemeToggle(),
+      // Logout button
+      el("a", { href: "/logout", className: "btn btn-ghost btn-sm hidden md:inline-flex" }, "Logout"),
       // Mobile dropdown
       el("div", { className: "dropdown dropdown-end md:hidden" }, [
         el("div", { tabindex: "0", role: "button", className: "btn btn-ghost btn-circle" }, [
@@ -43,6 +45,7 @@ export function renderNavbar(container) {
         }, [
           el("li", {}, [el("a", { href: "#catalog" }, "Catalog")]),
           el("li", {}, [el("a", { href: "#bookmarks" }, "Bookmarks")]),
+          el("li", {}, [el("a", { href: "/logout" }, "Logout")]),
         ]),
       ]),
     ]),

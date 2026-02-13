@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="corporate">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — Sandvik Drill Rig Comparisons</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    [data-theme="corporate"] {
+      --color-primary: oklch(0.65 0.24 35);
+      --color-primary-content: oklch(1 0 0);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-base-200 flex items-center justify-center">
+  <div class="card bg-base-100 shadow-xl w-full max-w-sm">
+    <div class="card-body">
+      <h2 class="card-title text-2xl font-bold text-primary justify-center mb-2">Sandvik Drill Rig Comparisons</h2>
+      <p class="text-center text-base-content/60 text-sm mb-4">Sign in to access the comparison tool</p>
+
+      <script>
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("error") === "invalid") {
+          document.write('<div class="alert alert-error text-sm mb-4"><span>Invalid username or password.</span></div>');
+        } else if (params.get("error") === "server") {
+          document.write('<div class="alert alert-error text-sm mb-4"><span>Server authentication not configured.</span></div>');
+        }
+      </script>
+
+      <form method="POST" action="/login" class="space-y-4">
+        <div class="form-control">
+          <label class="label" for="username">
+            <span class="label-text">Username</span>
+          </label>
+          <input type="text" id="username" name="username" placeholder="Enter username" class="input input-bordered w-full" required autofocus />
+        </div>
+        <div class="form-control">
+          <label class="label" for="password">
+            <span class="label-text">Password</span>
+          </label>
+          <input type="password" id="password" name="password" placeholder="Enter password" class="input input-bordered w-full" required />
+        </div>
+        <button type="submit" class="btn btn-primary w-full">Sign In</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "serve -s . -l $PORT"
+    "start": "node server.js"
   },
   "dependencies": {
-    "serve": "^14.2.4"
+    "bcryptjs": "^2.4.3",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1"
   }
 }

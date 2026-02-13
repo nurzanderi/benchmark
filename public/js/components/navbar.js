@@ -9,8 +9,8 @@ export function renderNavbar(container) {
     // Left: brand
     el("div", { className: "navbar-start" }, [
       el("a", { href: "#catalog", className: "btn btn-ghost text-lg font-bold" }, [
-        el("span", { className: "text-primary" }, "Sandvik"),
-        el("span", { className: "ml-1" }, "Drill Rig Comparisons"),
+        el("span", { className: "text-primary" }, "Surface Drill Rigs"),
+        el("span", { className: "ml-1" }, "- Comparison tool"),
       ]),
     ]),
     // Center: nav links (hidden on mobile)

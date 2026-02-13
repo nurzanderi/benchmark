@@ -1,12 +1,10 @@
 import { el } from "../utils/render.js";
-import { formatSpec, formatNumber, percentOf } from "../utils/format.js";
+import { formatSpec, formatNumber } from "../utils/format.js";
 import {
   getSandvikProduct,
   getCompetitorsForProduct,
   buildComparisonMatrix,
-  getSpecFields,
 } from "../services/comparison-service.js";
-import { BAR_CHART_SPECS } from "../data/comparison-specs.js";
 import {
   addBookmark,
   removeBookmark,
@@ -93,10 +91,6 @@ export function renderComparison(container, productId) {
   const tableContainer = el("div", { id: "comparison-table-area" });
   wrapper.appendChild(tableContainer);
 
-  // Bar chart container
-  const chartContainer = el("div", { id: "comparison-chart-area" });
-  wrapper.appendChild(chartContainer);
-
   container.appendChild(wrapper);
 
   function updateComparison() {
@@ -107,12 +101,6 @@ export function renderComparison(container, productId) {
     tableContainer.innerHTML = "";
     if (selected.length > 0) {
       tableContainer.appendChild(renderComparisonTable(product, selected, matrix));
-    }
-
-    // Bar charts
-    chartContainer.innerHTML = "";
-    if (selected.length > 0) {
-      chartContainer.appendChild(renderBarCharts(product, selected));
     }
 
     // Bookmark button
@@ -218,65 +206,6 @@ function renderComparisonTable(product, selected, matrix) {
   tableWrap.appendChild(table);
   section.appendChild(tableWrap);
   return section;
-}
-
-function renderBarCharts(product, selected) {
-  const section = el("div", { className: "space-y-3" });
-  section.appendChild(
-    el("h2", { className: "text-xl font-bold" }, "Visual Comparison")
-  );
-
-  const specKeys = BAR_CHART_SPECS[product.category] || [];
-  const specFields = getSpecFields(product.category);
-
-  for (const key of specKeys) {
-    const field = specFields.find((f) => f.key === key);
-    if (!field) continue;
-
-    const sandvikVal = product.specs[key];
-    if (sandvikVal == null) continue;
-
-    const allVals = [sandvikVal, ...selected.map((c) => c.specs[key] || 0)];
-    const maxVal = Math.max(...allVals);
-
-    const chartCard = el("div", { className: "bg-base-100 rounded-lg p-4 border border-base-300" });
-    chartCard.appendChild(
-      el("div", { className: "text-sm font-semibold mb-3" }, `${field.label} (${field.unit})`)
-    );
-
-    // Sandvik bar
-    chartCard.appendChild(createBar(product.name, sandvikVal, maxVal, field.unit, true, field.higherIsBetter));
-
-    // Competitor bars
-    for (const comp of selected) {
-      const val = comp.specs[key];
-      if (val == null) continue;
-      chartCard.appendChild(createBar(comp.name, val, maxVal, field.unit, false, field.higherIsBetter));
-    }
-
-    section.appendChild(chartCard);
-  }
-
-  return section;
-}
-
-function createBar(label, value, maxVal, unit, isSandvik, higherIsBetter) {
-  const pct = percentOf(value, maxVal);
-  const row = el("div", { className: "mb-2" });
-  row.appendChild(
-    el("div", { className: "flex justify-between text-xs mb-1" }, [
-      el("span", { className: isSandvik ? "font-bold text-primary" : "text-base-content/70" }, label),
-      el("span", { className: "font-mono" }, `${formatNumber(value)} ${unit}`),
-    ])
-  );
-  const barBg = el("div", { className: "w-full bg-base-200 rounded-full h-5" });
-  const bar = el("div", {
-    className: `bar-chart-bar h-5 rounded-full ${isSandvik ? "bg-primary" : "bg-neutral/40"}`,
-  });
-  bar.style.width = `${pct}%`;
-  barBg.appendChild(bar);
-  row.appendChild(barBg);
-  return row;
 }
 
 function renderBookmarkButton(container, product, selected) {

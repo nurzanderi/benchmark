@@ -14,7 +14,7 @@ export function renderCatalog(container) {
     el("h1", { className: "text-3xl font-bold" }, "Product Catalog")
   );
   wrapper.appendChild(
-    el("p", { className: "text-base-content/70" }, "Select a Sandvik drill rig to compare against competitor products.")
+    el("p", { className: "text-base-content/70" }, "Select a surface drill rig to compare against competitor products.")
   );
 
   // Category tabs

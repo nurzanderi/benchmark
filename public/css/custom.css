@@ -50,3 +50,17 @@
 .card:hover {
   border-color: oklch(0.30 0 0); /* #3a3a3a - subtle highlight on hover */
 }
+
+/* Product image placeholder */
+.product-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: oklch(0.13 0 0); /* slightly lighter than page bg */
+  color: oklch(0.35 0 0);
+}
+.product-image-placeholder svg {
+  width: 48px;
+  height: 48px;
+  opacity: 0.5;
+}

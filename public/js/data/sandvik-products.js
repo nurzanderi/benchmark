@@ -5,6 +5,36 @@ export const CATEGORIES = [
   { id: "rotary-blasthole", name: "Rotary Blasthole Drill Rigs" },
 ];
 
+// Sandvik CDN base URL for product images
+const CDN = "https://www.mining.sandvik/cdn-cgi/image/w=768,h=440,quality=90,fit=cover,format=avif/siteassets/images/surface-drill-rigs/";
+
+// Image map: product ID → image path relative to CDN base
+const IMAGE_MAP = {
+  "pantera-dp1610i": "surface-top-hammer-drill-rigs/pantera-dp1510i-surface-drill-rig-main.jpg",
+  "pantera-dp1510i": "surface-top-hammer-drill-rigs/pantera-dp1510i-surface-drill-rig-main.jpg",
+  "pantera-dp1110i": "surface-top-hammer-drill-rigs/pantera-dp1510i-surface-drill-rig-main.jpg",
+  "ranger-dx910i": "surface-top-hammer-drill-rigs/dx910i-001.jpg",
+  "ranger-dx810i": "surface-top-hammer-drill-rigs/dx810i-001.jpg",
+  "ranger-dx800": "surface-top-hammer-drill-rigs/dx800-001.jpg",
+  "ranger-dx700": "surface-top-hammer-drill-rigs/dx700-001.jpg",
+  "ranger-dx600": "surface-top-hammer-drill-rigs/dx600-001.jpg",
+  "dino-dc420ri": "surface-top-hammer-drill-rigs/dc420ri-001.jpg",
+  "dino-dc410r": "surface-top-hammer-drill-rigs/dc410ri-003.jpg",
+  "commando-dc300ri": "surface-top-hammer-drill-rigs/dc300ri-001.jpg",
+  "commando-dc130ri": "surface-top-hammer-drill-rigs/dc130ri-002.jpg",
+  "leopard-di650i": "surface-down-the-hole-drill-rigs/di650i-005.jpg",
+  "leopard-di550": "surface-down-the-hole-drill-rigs/di550-003-2.jpg",
+  "dr416i": "rotary-blasthole-drill-rigs/dr416i-left-mast-up-icab-1920x1080.png",
+  "dr412i": "rotary-blasthole-drill-rigs/sandvik-412i-left-mast-up-icab-1920x1080.png",
+  "ranger-dq500": "surface-top-hammer-drill-rigs/dq500-001.jpg",
+};
+
+/** Get product image URL by ID. Returns full CDN URL or null. */
+export function getProductImage(productId) {
+  const path = IMAGE_MAP[productId];
+  return path ? CDN + path : null;
+}
+
 export const sandvikProducts = [
   // ── Surface Top Hammer Drill Rigs ──
   {

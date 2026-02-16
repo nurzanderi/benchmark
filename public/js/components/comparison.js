@@ -1,5 +1,6 @@
 import { el } from "../utils/render.js";
 import { formatSpec, formatNumber } from "../utils/format.js";
+import { getProductImage } from "../data/sandvik-products.js";
 import {
   getSandvikProduct,
   getCompetitorsForProduct,
@@ -112,6 +113,21 @@ export function renderComparison(container, productId) {
 
 function renderProductHeader(product) {
   const header = el("div", { className: "card bg-base-100 shadow-sm border border-base-300" });
+
+  // Product image banner
+  const imageUrl = getProductImage(product.id);
+  if (imageUrl) {
+    const figure = el("figure");
+    const img = el("img", {
+      src: imageUrl,
+      alt: product.name,
+      className: "w-full h-48 object-cover",
+    });
+    img.loading = "lazy";
+    figure.appendChild(img);
+    header.appendChild(figure);
+  }
+
   const body = el("div", { className: "card-body" });
 
   body.appendChild(

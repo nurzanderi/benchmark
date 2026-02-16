@@ -1,8 +1,52 @@
+/* Surface Drill Rigs - Custom Dark Theme
+   Matches the visual style from ~/Desktop/Sandvik/index.html */
+
 [data-theme="corporate"] {
-  --color-primary: oklch(0.65 0.24 35);
-  --color-primary-content: oklch(1 0 0);
+  /* Core surfaces */
+  --color-base-100: oklch(0.16 0 0);          /* #1a1a1a - card/component backgrounds */
+  --color-base-200: oklch(0.10 0 0);          /* #0d0d0d - page background */
+  --color-base-300: oklch(0.22 0 0);          /* #2a2a2a - borders, dividers */
+  --color-base-content: oklch(1 0 0);         /* #ffffff - primary text */
+
+  /* Primary = blue accent (replaces orange) */
+  --color-primary: oklch(0.62 0.21 264);      /* #3b82f6 - blue accent */
+  --color-primary-content: oklch(1 0 0);      /* white text on primary */
+
+  /* Secondary = dark gray for buttons/badges */
+  --color-secondary: oklch(0.33 0.01 260);    /* #374151 - dark gray */
+  --color-secondary-content: oklch(0.88 0 0); /* #d1d5db - light gray text */
+
+  /* Neutral = darker surface for contrast */
+  --color-neutral: oklch(0.28 0.01 260);      /* ~#374151 */
+  --color-neutral-content: oklch(0.85 0 0);   /* light text on neutral */
+
+  /* Accent = blue (same as primary) */
+  --color-accent: oklch(0.62 0.21 264);
+  --color-accent-content: oklch(1 0 0);
+
+  /* Status colors */
+  --color-success: oklch(0.64 0.17 149);      /* #22c55e - competitor better */
+  --color-success-content: oklch(1 0 0);
+  --color-error: oklch(0.58 0.22 27);         /* #ef4444 - Sandvik better */
+  --color-error-content: oklch(1 0 0);
+  --color-warning: oklch(0.75 0.18 85);
+  --color-warning-content: oklch(0.15 0 0);
+  --color-info: oklch(0.62 0.21 264);
+  --color-info-content: oklch(1 0 0);
+
+  /* Enable dark color scheme for native elements */
+  color-scheme: dark;
 }
 
+/* Bar chart animation */
 .bar-chart-bar {
   transition: width 0.5s ease-out;
+}
+
+/* Card hover effect matching source project */
+.card {
+  transition: all 0.2s ease;
+}
+.card:hover {
+  border-color: oklch(0.30 0 0); /* #3a3a3a - subtle highlight on hover */
 }

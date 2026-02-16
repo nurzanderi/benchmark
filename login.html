@@ -9,8 +9,16 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>
     [data-theme="corporate"] {
-      --color-primary: oklch(0.65 0.24 35);
+      /* Dark theme matching main app */
+      --color-base-100: oklch(0.16 0 0);          /* #1a1a1a */
+      --color-base-200: oklch(0.10 0 0);          /* #0d0d0d */
+      --color-base-300: oklch(0.22 0 0);          /* #2a2a2a */
+      --color-base-content: oklch(1 0 0);         /* #ffffff */
+      --color-primary: oklch(0.62 0.21 264);      /* #3b82f6 - blue */
       --color-primary-content: oklch(1 0 0);
+      --color-error: oklch(0.58 0.22 27);
+      --color-error-content: oklch(1 0 0);
+      color-scheme: dark;
     }
   </style>
 </head>

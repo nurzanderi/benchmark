@@ -102,6 +102,7 @@ export function renderComparison(container, productId) {
     tableContainer.innerHTML = "";
     if (selected.length > 0) {
       tableContainer.appendChild(renderComparisonTable(product, selected, matrix));
+      tableContainer.appendChild(renderValuePropositions(product, selected));
     }
 
     // Bookmark button
@@ -221,6 +222,50 @@ function renderComparisonTable(product, selected, matrix) {
   table.appendChild(tbody);
   tableWrap.appendChild(table);
   section.appendChild(tableWrap);
+  return section;
+}
+
+function renderValuePropositions(product, selected) {
+  const section = el("div", { className: "space-y-3 mt-6" });
+  section.appendChild(
+    el("h2", { className: "text-xl font-bold" }, "Key Value Proposition")
+  );
+
+  // Use responsive grid: always stack on mobile, side-by-side on larger screens
+  const totalCols = selected.length + 1; // Sandvik + competitors
+  let gridClass = "grid gap-4 grid-cols-1";
+  if (totalCols === 2) gridClass += " md:grid-cols-2";
+  else if (totalCols === 3) gridClass += " md:grid-cols-2 lg:grid-cols-3";
+  else gridClass += " md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4";
+  const grid = el("div", { className: gridClass });
+
+  // Sandvik card (highlighted)
+  const sandvikCard = el("div", { className: "card bg-primary/10 border border-primary/30 shadow-sm" }, [
+    el("div", { className: "card-body p-4" }, [
+      el("h3", { className: "card-title text-sm text-primary" }, [
+        el("span", {}, product.name),
+        el("span", { className: "badge badge-primary badge-xs ml-1" }, "Sandvik"),
+      ]),
+      el("p", { className: "text-sm text-base-content/80 mt-1" }, product.customerPromise || "\u2014"),
+    ]),
+  ]);
+  grid.appendChild(sandvikCard);
+
+  // Competitor cards
+  for (const comp of selected) {
+    const compCard = el("div", { className: "card bg-base-100 border border-base-300 shadow-sm" }, [
+      el("div", { className: "card-body p-4" }, [
+        el("h3", { className: "card-title text-sm" }, [
+          el("span", {}, comp.name),
+          el("span", { className: "badge badge-outline badge-xs ml-1" }, comp.manufacturer),
+        ]),
+        el("p", { className: "text-sm text-base-content/70 mt-1" }, comp.customerPromise || "\u2014"),
+      ]),
+    ]);
+    grid.appendChild(compCard);
+  }
+
+  section.appendChild(grid);
   return section;
 }
 

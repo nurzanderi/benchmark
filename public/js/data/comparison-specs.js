@@ -11,7 +11,6 @@ export const SPEC_FIELDS = {
     { key: "tramSpeed",         label: "Tram Speed",         unit: "km/h",   type: "numeric", higherIsBetter: true },
     { key: "noiseLevel",        label: "Noise Level",        unit: "dB(A)",  type: "numeric", higherIsBetter: false },
     { key: "automationLevel",   label: "Automation",         unit: "",       type: "text",    higherIsBetter: null },
-    { key: "dustCollection",    label: "Dust Collection",    unit: "",       type: "boolean", higherIsBetter: true },
   ],
   "surface-dth": [
     { key: "holeRangeMin",      label: "Min Hole Diameter",  unit: "mm",     type: "numeric", higherIsBetter: false },
@@ -25,7 +24,6 @@ export const SPEC_FIELDS = {
     { key: "tramSpeed",         label: "Tram Speed",         unit: "km/h",   type: "numeric", higherIsBetter: true },
     { key: "noiseLevel",        label: "Noise Level",        unit: "dB(A)",  type: "numeric", higherIsBetter: false },
     { key: "automationLevel",   label: "Automation",         unit: "",       type: "text",    higherIsBetter: null },
-    { key: "dustCollection",    label: "Dust Collection",    unit: "",       type: "boolean", higherIsBetter: true },
   ],
   "dimensional-stone": [
     { key: "holeRangeMin",      label: "Min Hole Diameter",  unit: "mm",     type: "numeric", higherIsBetter: false },
@@ -37,7 +35,6 @@ export const SPEC_FIELDS = {
     { key: "fuelConsumption",   label: "Fuel Consumption",   unit: "L/h",    type: "numeric", higherIsBetter: false },
     { key: "noiseLevel",        label: "Noise Level",        unit: "dB(A)",  type: "numeric", higherIsBetter: false },
     { key: "holeSpacing",       label: "Hole Spacing",       unit: "mm",     type: "numeric", higherIsBetter: null },
-    { key: "dustCollection",    label: "Dust Collection",    unit: "",       type: "boolean", higherIsBetter: true },
   ],
   "rotary-blasthole": [
     { key: "holeRangeMin",        label: "Min Hole Diameter",    unit: "mm",     type: "numeric", higherIsBetter: false },
@@ -52,7 +49,6 @@ export const SPEC_FIELDS = {
     { key: "tramSpeed",           label: "Tram Speed",           unit: "km/h",   type: "numeric", higherIsBetter: true },
     { key: "noiseLevel",          label: "Noise Level",          unit: "dB(A)",  type: "numeric", higherIsBetter: false },
     { key: "automationLevel",     label: "Automation",           unit: "",       type: "text",    higherIsBetter: null },
-    { key: "dustCollection",      label: "Dust Collection",      unit: "",       type: "boolean", higherIsBetter: true },
   ],
 };
 

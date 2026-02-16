@@ -115,35 +115,39 @@ export function renderComparison(container, productId) {
 function renderProductHeader(product) {
   const header = el("div", { className: "card bg-base-100 shadow-sm border border-base-300" });
 
-  // Product image banner
+  // Horizontal layout: image left, details right
   const imageUrl = getProductImage(product.id);
+  const row = el("div", { className: imageUrl ? "flex flex-col md:flex-row" : "" });
+
+  // Left: product image
   if (imageUrl) {
-    const figure = el("figure");
+    const figure = el("figure", { className: "md:w-80 lg:w-96 shrink-0" });
     const img = el("img", {
       src: imageUrl,
       alt: product.name,
-      className: "w-full h-48 object-cover",
+      className: "w-full h-48 md:h-full object-cover md:rounded-l-2xl md:rounded-tr-none",
     });
     img.loading = "lazy";
     figure.appendChild(img);
-    header.appendChild(figure);
+    row.appendChild(figure);
   }
 
-  const body = el("div", { className: "card-body" });
+  // Right: details
+  const body = el("div", { className: "card-body p-4 md:p-5 flex-1 min-w-0" });
 
   body.appendChild(
     el("h1", { className: "text-2xl font-bold text-primary" }, product.name)
   );
 
-  // Quick stats
-  const stats = el("div", { className: "stats stats-vertical sm:stats-horizontal shadow mt-4 w-full" });
+  // Compact stats grid
+  const statsGrid = el("div", { className: "grid grid-cols-2 sm:grid-cols-4 gap-3 mt-3" });
 
   const addStat = (label, value, unit) => {
-    const stat = el("div", { className: "stat" });
-    stat.appendChild(el("div", { className: "stat-title" }, label));
-    stat.appendChild(el("div", { className: "stat-value text-lg" }, formatNumber(value)));
-    if (unit) stat.appendChild(el("div", { className: "stat-desc" }, unit));
-    stats.appendChild(stat);
+    const stat = el("div", { className: "bg-base-200/50 rounded-lg px-3 py-2" });
+    stat.appendChild(el("div", { className: "text-xs text-base-content/50" }, label));
+    stat.appendChild(el("div", { className: "text-base font-bold leading-tight" }, formatNumber(value)));
+    if (unit) stat.appendChild(el("div", { className: "text-xs text-base-content/40" }, unit));
+    statsGrid.appendChild(stat);
   };
 
   if (product.specs.holeRangeMax) {
@@ -154,18 +158,19 @@ function renderProductHeader(product) {
   if (product.specs.enginePower) addStat("Engine", product.specs.enginePower, "kW");
   if (product.specs.weight) addStat("Weight", product.specs.weight, "kg");
 
-  body.appendChild(stats);
+  body.appendChild(statsGrid);
 
   // Highlights
   if (product.highlights && product.highlights.length) {
-    const hl = el("div", { className: "mt-4 flex flex-wrap gap-2" });
+    const hl = el("div", { className: "mt-3 flex flex-wrap gap-1.5" });
     for (const h of product.highlights) {
-      hl.appendChild(el("span", { className: "badge badge-outline" }, h));
+      hl.appendChild(el("span", { className: "badge badge-outline badge-sm" }, h));
     }
     body.appendChild(hl);
   }
 
-  header.appendChild(body);
+  row.appendChild(body);
+  header.appendChild(row);
   return header;
 }
 

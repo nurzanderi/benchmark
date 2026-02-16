@@ -8,8 +8,9 @@ export const CATEGORIES = [
 // Sandvik CDN base URL for product images
 const CDN = "https://www.mining.sandvik/cdn-cgi/image/w=768,h=440,quality=90,fit=cover,format=avif/siteassets/images/surface-drill-rigs/";
 
-// Image map: product ID → image path relative to CDN base
+// Image map: product ID → image path (CDN-relative or local absolute starting with "/")
 const IMAGE_MAP = {
+  // Surface Top Hammer — CDN images
   "pantera-dp1610i": "surface-top-hammer-drill-rigs/pantera-dp1510i-surface-drill-rig-main.jpg",
   "pantera-dp1510i": "surface-top-hammer-drill-rigs/pantera-dp1510i-surface-drill-rig-main.jpg",
   "pantera-dp1110i": "surface-top-hammer-drill-rigs/pantera-dp1510i-surface-drill-rig-main.jpg",
@@ -22,17 +23,33 @@ const IMAGE_MAP = {
   "dino-dc410r": "surface-top-hammer-drill-rigs/dc410ri-003.jpg",
   "commando-dc300ri": "surface-top-hammer-drill-rigs/dc300ri-001.jpg",
   "commando-dc130ri": "surface-top-hammer-drill-rigs/dc130ri-002.jpg",
+  // Surface DTH — CDN + local images
   "leopard-di650i": "surface-down-the-hole-drill-rigs/di650i-005.jpg",
+  "leopard-di560": "/images/rigs/di560-003.avif",
   "leopard-di550": "surface-down-the-hole-drill-rigs/di550-003-2.jpg",
-  "dr416i": "rotary-blasthole-drill-rigs/dr416i-left-mast-up-icab-1920x1080.png",
-  "dr412i": "rotary-blasthole-drill-rigs/sandvik-412i-left-mast-up-icab-1920x1080.png",
+  "leopard-di450": "/images/rigs/di450-004.avif",
+  // Dimensional Stone
   "ranger-dq500": "surface-top-hammer-drill-rigs/dq500-001.jpg",
+  "trimmer-dq250r": "/images/rigs/trimmer-dq250r-hero-image.avif",
+  // Rotary Blasthole — CDN + local images
+  "dr416i": "rotary-blasthole-drill-rigs/dr416i-left-mast-up-icab-1920x1080.png",
+  "dr416ie": "/images/rigs/dr416ie-left-mast-up-icab-1920x1080.avif",
+  "dr413i": "/images/rigs/sandvik-413i-left-mast-up-icab-1920x1080.avif",
+  "dr413ie": "/images/rigs/dr413ie-left-mast-up-1920x1080.avif",
+  "dr412i": "rotary-blasthole-drill-rigs/sandvik-412i-left-mast-up-icab-1920x1080.png",
+  "dr412ie": "/images/rigs/dr412ie-left-mast-up-1920x1080.avif",
+  "dr410ie": "/images/rigs/dr410ie-mast-up-left-mast-up-1920x1080.avif",
+  "d75kx": "/images/rigs/d75kx-left-mast-up-website.avif",
+  "d50kx": "/images/rigs/d50kx-mast-up-left-1920x1080.avif",
+  "d245x": "/images/rigs/d245x-left-mast-up-website.avif",
+  "d25kx": "/images/rigs/d25kx-left-mast-up-website.avif",
 };
 
-/** Get product image URL by ID. Returns full CDN URL or null. */
+/** Get product image URL by ID. Returns full URL or null. */
 export function getProductImage(productId) {
   const path = IMAGE_MAP[productId];
-  return path ? CDN + path : null;
+  if (!path) return null;
+  return path.startsWith("/") ? path : CDN + path;
 }
 
 export const sandvikProducts = [

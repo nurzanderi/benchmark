@@ -116,7 +116,7 @@ function createProductCard(product) {
   // Product image
   const imageUrl = getProductImage(product.id);
   if (imageUrl) {
-    const figure = el("figure", { className: "px-0 pt-0" });
+    const figure = el("figure", { className: "px-0 pt-0 bg-white" });
     const img = el("img", {
       src: imageUrl,
       alt: product.name,

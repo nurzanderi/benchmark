@@ -121,7 +121,7 @@ function renderProductHeader(product) {
 
   // Left: product image
   if (imageUrl) {
-    const figure = el("figure", { className: "md:w-80 lg:w-96 shrink-0" });
+    const figure = el("figure", { className: "md:w-80 lg:w-96 shrink-0 bg-white" });
     const img = el("img", {
       src: imageUrl,
       alt: product.name,
